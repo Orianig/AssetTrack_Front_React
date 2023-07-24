@@ -1,7 +1,17 @@
-export default function App() {
+import { AppRouter } from "./routers/app.router";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+function App() {
+  
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <>
+       <div className="page-container">
+       <ToastContainer autoClose={3000} />
+        <AppRouter/>
+      </div>
+    </>
   )
 }
+
+export default App
