@@ -5,3 +5,11 @@
 ::-webkit-scrollbar {
     width: 0px;
   }
+
+  @layer components{
+
+  .AT-input{
+    @apply  p-3
+  }
+
+}
