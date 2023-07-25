@@ -6,17 +6,28 @@ export default {
   ],
   theme: {
     extend: {
+      outlineColor: {
+        transparent: 'transparent',
+      },
       colors:{
-        primary: '#79B4B7',
+        primary: '#FF0000',
         secondary:{
-          100: '#edebeb',
-          500: '#EBA603',
-          900: '#E0DDDD'
+          100: '#0000FF',
+          500: '#00FF00',
+          900: '#FFFF00'
         }
-      }
+      },
+      fontFamily: {
+        'work-sans': ['"Work Sans"', 'sans-serif'],
     },
+  },
   },
   plugins: [
     require('@tailwindcss/forms'),
   ],
+  variants: {
+    extend: {
+      outline: ['focus-visible', 'focus', 'focus-within'],
+    },
+  },
 }
