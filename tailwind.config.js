@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: [
     "./index.html",
@@ -10,15 +11,18 @@ export default {
         transparent: 'transparent',
       },
       colors:{
-        primary: '#FF0000',
+        primary: '#493862',
         secondary:{
-          100: '#0000FF',
-          500: '#00FF00',
-          900: '#FFFF00'
+          100: '#A3B744',
+          300: '#a7ab98',
+          500: '#D56D12',
+          900: '#33222B'
         }
       },
       fontFamily: {
-        'work-sans': ['"Work Sans"', 'sans-serif'],
+        'mulish': ['Mulish', 'sans-serif'],
+        'work-sans': ['Work Sans', 'sans-serif'],
+        'Comfortaa':['Comfortaa', 'cursive'] 
     },
   },
   },
