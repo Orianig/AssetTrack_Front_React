@@ -43,12 +43,25 @@
 /* SIDEBAR COMPONENT */
 
 .sidebarComponent{
-  @apply py-2 px-4 border-l border-gray-500 ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-gray-500 before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-secondary-100 hover:text-white transition-colors
+  @apply py-2 font-work-sans px-4 border-l border-gray-500 ml-6 block relative before:w-3 before:h-3 before:absolute before:bg-gray-500 before:rounded-full before:-left-[6.5px] before:top-1/2 before:-translate-y-1/2 before:border-4 before:border-secondary-100 hover:text-white transition-colors
 }
 
 .sidebarButton{
-  @apply w-full flex items-center justify-between py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors;
+  @apply w-full flex items-center justify-between py-2 px-4 rounded-lg hover:bg-secondary-200 transition-colors;
 }
 
+.iconsText{
+  @apply text-gray-600 hover:text-primary ;
+}
+
+.iconsComponent{
+  @apply flex items-center gap-4 font-work-sans
+}
+
+/* PROFILE */
+
+.AT-inputProfile{
+  @apply text-sm md:text-base text-start w-full h-12 font-normal text-white font-mulish border-t-transparent border-r-transparent border-l-transparent border-b-secondary-300 bg-transparent placeholder-secondary-300 focus:outline-none shadow-transparent focus:border-r-transparent focus:border-l-transparent focus:border-t-transparent focus:border-b-secondary-100 focus:ring-transparent;
+}
 
 }

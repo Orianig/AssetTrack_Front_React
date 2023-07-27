@@ -25,7 +25,7 @@ const Sidebar = () => {
   return (
     <>
       <div
-        className={`xl:h-[100vh] overflow-y-scroll fixed xl:static w-[80%] md:w-[40%] lg:w-[30%] xl:w-auto h-full top-0 bg-secondary-300 p-4 flex flex-col justify-between z-50 ${
+        className={`xl:h-[100vh] overflow-y-scroll fixed xl:static w-[80%] md:w-[40%] lg:w-[30%] xl:w-auto h-full top-0 bg-primary p-4 flex flex-col justify-between z-50 ${
           showMenu ? "left-0" : "-left-full"
         } transition-all`}
       >
@@ -37,10 +37,10 @@ const Sidebar = () => {
             {/* CALENDAR*/}
             <Link
               to="/personalArea"
-              className="flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors"
+              className="flex items-center gap-4 py-2 px-4 rounded-lg font-work-sans hover:bg-secondary-200 transition-colors"
               onClick={() => setShowMenu(false)}
             >
-              <BsCalendarCheckFill className="text-primary" />
+              <BsCalendarCheckFill className="iconsText" />
               Calendario
             </Link>
             {/* PROFILE*/}
@@ -48,8 +48,8 @@ const Sidebar = () => {
               onClick={() => setShowProfileSubmenu(!showProfileSubmenu)}
               className="sidebarButton"
             >
-              <span className="flex items-center gap-4">
-                <FaUser className="text-primary" /> Mi Espacio
+              <span className="iconsComponent">
+                <FaUser className="iconsText" /> Mi Espacio
               </span>
               <RiArrowRightSLine
                 className={`mt-1 ${
@@ -91,8 +91,8 @@ const Sidebar = () => {
               onClick={() => setShowAssetsSubmenu(!showAssetsSubmenu)}
               className="sidebarButton"
             >
-              <span className="flex items-center gap-4">
-                <FaPuzzlePiece className="text-primary" /> Activos
+              <span className="flex items-center gap-4 font-work-sans">
+                <FaPuzzlePiece className="iconsText" /> Activos
               </span>
               <RiArrowRightSLine
                 className={`mt-1 ${
@@ -134,8 +134,8 @@ const Sidebar = () => {
               onClick={() => setShowInventorySubmenu(!showInventorySubmenu)}
               className="sidebarButton"
             >
-              <span className="flex items-center gap-4">
-                <FaBoxes className="text-primary" /> Inventario
+              <span className="flex items-center gap-4 font-work-sans">
+                <FaBoxes className="iconsText" /> Inventario
               </span>
               <RiArrowRightSLine
                 className={`mt-1 ${
@@ -192,10 +192,10 @@ const Sidebar = () => {
           <nav>
             <Link
             //   to="/login"
-              className="flex items-center gap-4 py-2 px-4 rounded-lg hover:bg-secondary-900 transition-colors"
+              className="flex items-center gap-4 font-work-sans py-2 px-4 rounded-lg hover:bg-secondary-200 transition-colors"
             //   onClick={handleLogout}
             >
-              <RiLogoutCircleRLine className="text-primary" />
+              <RiLogoutCircleRLine className="iconsText" />
               Cerrar sesión
             </Link>
           </nav>
