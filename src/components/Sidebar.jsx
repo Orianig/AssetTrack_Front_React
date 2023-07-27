@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo-4.png";
 
 //ICONS
-import { FaUser, FaPuzzlePiece, FaBoxes} from "react-icons/fa";
+import { FaUser, FaPuzzlePiece, FaBoxes, FaTruckMoving} from "react-icons/fa";
 import { BsCalendarCheckFill } from "react-icons/bs"; 
 import {
   RiArrowRightSLine,
@@ -11,6 +11,8 @@ import {
   RiMenu3Line,
   RiLogoutCircleRLine,
 } from "react-icons/ri";
+
+import { MdProductionQuantityLimits } from "react-icons/md";
 
 
 const Sidebar = () => {
@@ -43,6 +45,7 @@ const Sidebar = () => {
               <BsCalendarCheckFill className="iconsText" />
               Calendario
             </Link>
+            
             {/* PROFILE*/}
             <button
               onClick={() => setShowProfileSubmenu(!showProfileSubmenu)}
@@ -170,22 +173,26 @@ const Sidebar = () => {
                 >
                   Gestión de inventario
                 </Link>
-                 {/* PRODUCTS*/}
-                 <Link
-                  to="/personalArea/products"
-                  className="sidebarComponent"
-                >
-                  Productos
-                </Link>
-                 {/* PROVIDERS*/}
-                 <Link
-                  to="/personalArea/providers"
-                  className="sidebarComponent"
-                >
-                  Proveedores
-                </Link>
               </li>
             </ul>
+            {/* PRODUCTS*/}
+            <Link
+              to="/personalArea/products"
+              className="flex items-center gap-4 py-2 px-4 rounded-lg font-work-sans hover:bg-secondary-200 transition-colors"
+              onClick={() => setShowMenu(false)}
+            >
+              <MdProductionQuantityLimits className="iconsText" />
+              Productos
+            </Link>
+            {/* PROVIDERS*/}
+            <Link
+              to="/personalArea/providers"
+              className="flex items-center gap-4 py-2 px-4 rounded-lg font-work-sans hover:bg-secondary-200 transition-colors"
+              onClick={() => setShowMenu(false)}
+            >
+              <FaTruckMoving className="iconsText" />
+              Proveedores
+            </Link>
           </nav>
         </div>
         <div>
