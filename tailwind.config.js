@@ -11,12 +11,13 @@ export default {
         transparent: 'transparent',
       },
       colors:{
-        primary: '#493862',
+        primary: '#9DB2BF',
         secondary:{
-          100: '#A3B744',
-          300: '#a7ab98',
-          500: '#D56D12',
-          900: '#33222B'
+          100: '#FAF2F4',
+          200: '#DDE6ED',
+          300: '#FF355E',
+          500: '#CDECEF',
+          900: '#07A2AD'
         }
       },
       fontFamily: {
