@@ -9,19 +9,16 @@ import { login as loginStore } from "../../redux/slices/user.slice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import jwtDecode from "jwt-decode";
 
 const Login = () => {
-  console.log('Componente Login renderizado');
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const images = [Bg1, Bg2, Bg3, Bg4];
 
+  //HOOKS
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [token, setToken] = useState("");
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-
-  const [token, setToken] = useState("");
   const [userError, setUserError] = useState({
     credentials: "",
   });
@@ -31,7 +28,6 @@ const Login = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    //actualiza el estado
     setUser((prevUser) => ({
       ...prevUser,
       [name]: value,
@@ -41,19 +37,19 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     login(user)
-    .then((response) => {
-      setToken(response.token)
-      setUser(response.data)
+      .then((response) => {
+        setToken(response.token);
+        setUser(response.data);
       })
       .catch((error) => {
-        setUserError({ credentials: "Error en el inicio de sesión" });
+        setUserError({ credentials: "Error en el inicio de sesión" + error });
         toast.error("No ha sido posible iniciar sesion");
       });
   };
 
   useEffect(() => {
     if (token && user) {
-      console.log(user, token); 
+      console.log(user, token);
       try {
         dispatch(
           loginStore({
@@ -70,12 +66,13 @@ const Login = () => {
           navigate("/personalArea");
         }, 1000);
       } catch (error) {
-        console.log('Error con user', error);
+        console.log("Error con user", error);
       }
     }
   }, [token, dispatch, navigate]);
 
   //MANEJO DEL SLIDE
+  const images = [Bg1, Bg2, Bg3, Bg4];
   const handlePrevSlide = () => {
     setCurrentSlide((prevSlide) =>
       prevSlide === 0 ? images.length - 1 : prevSlide - 1
@@ -91,10 +88,9 @@ const Login = () => {
   return (
     <>
       <div className="h-screen flex flex-col lg:flex-row">
+       
         {/* Left column container */}
-
         {/* Carousel */}
-
         <div className="slider ">
           <div className="h-screen relative overflow-hidde">
             {images.map((imageUrl, index) => (
@@ -145,7 +141,6 @@ const Login = () => {
         </div>
 
         {/* Right column container */}
-
         <div className="px-4 md:px-0 lg:w-6/12">
           <div className="md:mx-6 md:p-12">
             {/* LOGO */}
