@@ -4,15 +4,45 @@ import Bg2 from "../../assets/images/login-2.jpg";
 import Bg3 from "../../assets/images/login-3.jpg";
 import Bg4 from "../../assets/images/login-4.jpg";
 import Logo from "../../assets/images/logo-4.png";
-// import { login } from "../../services/auth.service";
-// import { login as loginStore } from "../../redux/slices/user.slice";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { toast } from "react-toastify";
-// import jwtDecode from "jwt-decode";
+import { register } from "../../services/auth.service";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Register = () => {
+  //HOOKS
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [user, setUser] = useState({
+    name: "",
+    surname: "",
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    register(user)
+      .then((result) => {
+        toast.success(user.name + " te haz registrado con exito");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      })
+      .catch((error) => {
+        toast.error("No se han cumplido los parametros necesarios");
+      });
+  };
+
+  //MANEJO DEL SLIDE
   const images = [Bg1, Bg2, Bg3, Bg4];
 
   const handlePrevSlide = () => {
@@ -31,9 +61,7 @@ const Register = () => {
     <>
       <div className="h-screen flex flex-col lg:flex-row">
         {/* Left column container */}
-
         {/* Carousel */}
-
         <div className="slider ">
           <div className="h-screen relative overflow-hidde">
             {images.map((imageUrl, index) => (
@@ -84,7 +112,6 @@ const Register = () => {
         </div>
 
         {/* Right column container */}
-
         <div className="px-4 md:px-0 lg:w-6/12">
           <div className="md:mx-6 md:p-12">
             {/* LOGO */}
@@ -97,33 +124,49 @@ const Register = () => {
               <a
                 href="#"
                 className="text-secondary-100 hover:underline"
-                // onClick={() => navigate("/register")}
+                onClick={() => navigate("/")}
               >
                 Inicia Sesión
               </a>
             </span>
             <div className="mt-6">
               <form>
-              <p className="loginForm mb-0">NOMBRE</p>
+                <p className="loginForm mb-0">NOMBRE</p>
                 <input
+                  value={user.name}
+                  onChange={handleChange}
+                  id="name"
+                  name="name"
                   type="text"
                   placeholder="Escribe tu nombre"
                   className="AT-input mb-4"
                 />
                 <p className="loginForm mb-0">APELLIDO</p>
                 <input
+                  value={user.surname}
+                  onChange={handleChange}
+                  id="surname"
+                  name="surname"
                   type="text"
                   placeholder="Escribe tu apellido"
                   className="AT-input mb-4"
                 />
                 <p className="loginForm mb-0">EMAIL</p>
                 <input
+                  value={user.email}
+                  onChange={handleChange}
+                  id="email"
+                  name="email"
                   type="email"
                   placeholder="Escribe tu email"
                   className="AT-input mb-4"
                 />
                 <p className="loginForm mb-0">CONTRASEÑA</p>
                 <input
+                  value={user.password}
+                  onChange={handleChange}
+                  id="password"
+                  name="password"
                   type="password"
                   placeholder="Escribe tu contraseña"
                   className="AT-input"
@@ -137,10 +180,11 @@ const Register = () => {
               <button
                 className="loginButton"
                 type="button"
-                data-te-ripple-init
-                data-te-ripple-color="light"
+                onClick={(e) => {
+                  handleSubmit(e);
+                }}
               >
-                Entrar
+                Crear cuenta
               </button>
               <a
                 href="#"
