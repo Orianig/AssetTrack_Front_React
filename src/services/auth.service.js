@@ -1,17 +1,15 @@
 import axios from 'axios';
 
-const url = 'http://localhost:8000/'
+const url = 'http://localhost:8000/api/auth'
 
 //REGISTRO
 export const register = async (credentials) => {
-    const {data} = await axios.post(`${url}auth/register`,credentials)
+    const {data} = await axios.post(`${url}/register`, credentials)
     return data
 }
 
 //LOGIN
-//funcion que toma las credenciales del usuario
 export const login = async (credentials) => {
-      const res = await axios.post(`${url}auth/login`, credentials);
-      // console.log('Respuesta de inicio de sesión:', res.data);
-      return res.data.token;
+    const {data} = await axios.post(`${url}/login`, credentials);
+      return data;
   };
