@@ -1,7 +1,19 @@
 import React from "react";
 import CustomButton from '../../components/CustomButton';
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfile, updateProfile } from "../../services/user.service";
 
 const Profile = () => {
+
+  //HOOKS 
+  // const [userProfile, setUserProfile] = useState("");
+  // const [user, setUser] = useState({});
+  // const dispatch = useDispatch();
+
+  const authToken = useSelector((state) => state.user.credentials.token);
+  console.log(authToken)
+  const userRoleId = useSelector((state) => state.user.data.role_id);
+  console.log(userRoleId)
   return (
     <>
       <div className="bg-secondary-100 p-8 rounded-xl mb-8">
