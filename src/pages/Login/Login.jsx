@@ -4,17 +4,78 @@ import Bg2 from "../../assets/images/login-2.jpg";
 import Bg3 from "../../assets/images/login-3.jpg";
 import Bg4 from "../../assets/images/login-4.jpg";
 import Logo from "../../assets/images/logo-4.png";
-// import { login } from "../../services/auth.service";
-// import { login as loginStore } from "../../redux/slices/user.slice";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { toast } from "react-toastify";
-// import jwtDecode from "jwt-decode";
+import { login } from "../../services/auth.service";
+import { login as loginStore } from "../../redux/slices/user.slice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import jwtDecode from "jwt-decode";
 
 const Login = () => {
+  console.log('Componente Login renderizado');
   const [currentSlide, setCurrentSlide] = useState(0);
   const images = [Bg1, Bg2, Bg3, Bg4];
 
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [token, setToken] = useState("");
+  const [userError, setUserError] = useState({
+    credentials: "",
+  });
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    //actualiza el estado
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login(user)
+    .then((response) => {
+      setToken(response.token)
+      setUser(response.data)
+      })
+      .catch((error) => {
+        setUserError({ credentials: "Error en el inicio de sesión" });
+        toast.error("No ha sido posible iniciar sesion");
+      });
+  };
+
+  useEffect(() => {
+    if (token && user) {
+      console.log(user, token); 
+      try {
+        dispatch(
+          loginStore({
+            token: token,
+            id: user.id,
+            email: user.email,
+            role_id: user.role_id,
+            name: user.name,
+            surname: user.surname,
+          })
+        );
+        toast.success("Bienvenido " + user.name);
+        setTimeout(() => {
+          navigate("/personalArea");
+        }, 1000);
+      } catch (error) {
+        console.log('Error con user', error);
+      }
+    }
+  }, [token, dispatch, navigate]);
+
+  //MANEJO DEL SLIDE
   const handlePrevSlide = () => {
     setCurrentSlide((prevSlide) =>
       prevSlide === 0 ? images.length - 1 : prevSlide - 1
@@ -97,7 +158,7 @@ const Login = () => {
               <a
                 href="#"
                 className="text-secondary-100 hover:underline"
-                // onClick={() => navigate("/register")}
+                onClick={() => navigate("/register")}
               >
                 Registrate
               </a>
@@ -106,13 +167,25 @@ const Login = () => {
               <form>
                 <p className="loginForm mb-4">EMAIL</p>
                 <input
+                  value={user.email}
+                  onChange={handleChange}
+                  id="email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
+                  required
                   placeholder="Escribe tu email"
                   className="AT-input mb-8"
                 />
                 <p className="loginForm mb-4">CONTRASEÑA</p>
                 <input
+                  value={user.password}
+                  onChange={handleChange}
+                  id="password"
+                  name="password"
                   type="password"
+                  autoComplete="current-password"
+                  required
                   placeholder="Escribe tu contraseña"
                   className="AT-input"
                 />
@@ -124,9 +197,8 @@ const Login = () => {
             <div className="max-w-lg flex justify-center md:justify-end items-center ml-8 md:ml-44">
               <button
                 className="loginButton"
-                type="button"
-                data-te-ripple-init
-                data-te-ripple-color="light"
+                type="submit"
+                onClick={(e) => handleSubmit(e)}
               >
                 Entrar
               </button>
@@ -137,6 +209,11 @@ const Login = () => {
                 ¿Olvidaste tu contraseña?
               </a>
             </div>
+            {userError?.credentials ? (
+              <div>{userError.credentials}</div>
+            ) : (
+              <div></div>
+            )}
           </div>
         </div>
       </div>
