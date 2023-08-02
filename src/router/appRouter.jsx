@@ -15,6 +15,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Profile from "../pages/Profile/Profile";
 import UserProject from "../pages/Profile/Projects";
 import UserAsset from "../pages/Profile/ReservationUserAssets";
+import Teams from "../pages/Profile/Teams";
 
 //Assets
 import Assets from "../pages/AssetsUser/ReservationAsset";
@@ -28,6 +29,7 @@ import InventoryManagement from "../pages/Inventory/InventoryManagement";
 import Products from "../pages/Inventory/Product";
 import Providers from "../pages/Inventory/Provider";
 
+
 function AppRouter() {
   return (
     <BrowserRouter>
@@ -39,6 +41,7 @@ function AppRouter() {
           <Route index element={<Dashboard />} />
           <Route path="profile" element={<Profile />}/>
           <Route path="userProject" element={<UserProject />} />
+          <Route path="team" element={<Teams/>} />
           <Route path="userAsset" element={<UserAsset />} />
           {/* ASSETS */}
           <Route path="assets" element={<Assets />} />
