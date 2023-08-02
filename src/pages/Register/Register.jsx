@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import Slider from "../../components/slider";
+import Slider from "../../components/slider";
 import Logo from "../../assets/images/logo-4.png";
 import { register } from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +42,7 @@ const Register = () => {
     <>
       <div className="h-screen flex flex-col lg:flex-row">
                 {/* Left column container */}
-                {/* <Slider></Slider> */}
+                <Slider></Slider>
 
         {/* Right column container */}
         <div className="px-4 md:px-0 lg:w-6/12">
