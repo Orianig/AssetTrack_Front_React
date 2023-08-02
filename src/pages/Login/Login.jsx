@@ -35,9 +35,7 @@ const Login = () => {
     login(user)
       .then((response) => {
         setToken(response.token);
-        console.log(setToken)
         setUser(response.data);
-        console.log(setUser)
       })
       .catch((error) => {
         setUserError({ credentials: "Error en el inicio de sesión" + error });
@@ -47,7 +45,6 @@ const Login = () => {
 
   useEffect(() => {
     if (token && user) {
-      console.log(user, token);
       try {
         dispatch(
           loginStore({
