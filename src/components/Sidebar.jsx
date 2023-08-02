@@ -24,7 +24,6 @@ const Sidebar = () => {
   const [showInventorySubmenu, setShowInventorySubmenu] = useState(false);
 
   const userRoleId = useSelector((state) => state.user.data.role_id);
-  console.log(userRoleId);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -84,13 +83,13 @@ const Sidebar = () => {
                 >
                   Proyectos
                 </Link>
-                {/* ASSETS RESERVATIONS*/}
-                <Link to="/personalArea/userAsset" className="sidebarComponent">
-                  Reservas
+                {/* TEAMS*/}
+                <Link to="/personalArea/team" className="sidebarComponent">
+                  Equipos
                 </Link>
                 {/* ASSETS RESERVATIONS*/}
                 <Link to="/personalArea/userAsset" className="sidebarComponent">
-                  Equipos
+                  Reservas
                 </Link>
               </li>
             </ul>
