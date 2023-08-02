@@ -69,7 +69,7 @@ const Sidebar = () => {
             </button>
             <ul
               className={` ${
-                showProfileSubmenu ? "h-[130px]" : "h-0"
+                showProfileSubmenu ? "h-[165px]" : "h-0"
               } overflow-y-hidden transition-all`}
             >
               <li>
@@ -87,6 +87,10 @@ const Sidebar = () => {
                 {/* ASSETS RESERVATIONS*/}
                 <Link to="/personalArea/userAsset" className="sidebarComponent">
                   Reservas
+                </Link>
+                {/* ASSETS RESERVATIONS*/}
+                <Link to="/personalArea/userAsset" className="sidebarComponent">
+                  Equipos
                 </Link>
               </li>
             </ul>
