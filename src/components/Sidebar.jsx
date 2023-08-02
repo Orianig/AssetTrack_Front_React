@@ -4,7 +4,7 @@ import Logo from "../assets/images/logo-4.png";
 
 //ICONS
 import { FaUser, FaPuzzlePiece, FaBoxes, FaTruckMoving} from "react-icons/fa";
-import { BsCalendarCheckFill } from "react-icons/bs"; 
+import { BsCalendarCheckFill, BsFillPeopleFill } from "react-icons/bs"; 
 import {
   RiArrowRightSLine,
   RiCloseLine,
@@ -89,6 +89,15 @@ const Sidebar = () => {
                 </Link>
               </li>
             </ul>
+             {/* EMPLEADO */}
+             <Link
+              to="/personalArea/providers"
+              className="flex items-center gap-4 py-2 px-4 rounded-lg font-work-sans hover:bg-secondary-200 transition-colors"
+              onClick={() => setShowMenu(false)}
+            >
+              <BsFillPeopleFill className="iconsText" />
+              Empleados
+            </Link>
             {/* ASSETS*/}
             <button
               onClick={() => setShowAssetsSubmenu(!showAssetsSubmenu)}
@@ -121,14 +130,14 @@ const Sidebar = () => {
                   to="/personalArea/assetsAnalytics"
                   className="sidebarComponent"
                 >
-                  Analisis de activos
+                  Analisis
                 </Link>
                 {/* ASSETS MANAGEMENT*/}
                 <Link
                   to="/personalArea/assetsManagement"
                   className="sidebarComponent"
                 >
-                  Gestión de activos
+                  Gestión
                 </Link>
               </li>
             </ul>
@@ -164,14 +173,14 @@ const Sidebar = () => {
                   to="/personalArea/inventoryAnalytics"
                   className="sidebarComponent"
                 >
-                  Analisis de inventario
+                  Analisis
                 </Link>
                 {/* INVENTORY MANAGEMENT*/}
                 <Link
                   to="/personalArea/inventoryManagement"
                   className="sidebarComponent"
                 >
-                  Gestión de inventario
+                  Gestión
                 </Link>
               </li>
             </ul>
