@@ -27,9 +27,10 @@ export default {
     },
   },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
+  plugins:[require('@tailwindcss/forms'),("tw-elements/dist/plugin.cjs")
+
   ],
+  darkMode: "class",
   variants: {
     extend: {
       outline: ['focus-visible', 'focus', 'focus-within'],
