@@ -29,3 +29,9 @@ export const getMeProjects = async(token) => {
     const {data} = await axios.get(`${url}/projects`, config(token))
     return data
 }
+
+//USER TEAMS
+export const getUserTeams = async(token) => {
+    const {data} = await axios.get(`${url}/teams`, config(token))
+    return data
+}
