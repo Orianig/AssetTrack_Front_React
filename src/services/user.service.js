@@ -23,3 +23,9 @@ export const updateProfile = async(token, credentials) => {
     const {data} = await axios.put(`${url}/profile/updateProfile`, credentials , config(token))
     return data
 }
+
+//USER PROJECTS
+export const getMeProjects = async(token) => {
+    const {data} = await axios.get(`${url}/projects`, config(token))
+    return data
+}
