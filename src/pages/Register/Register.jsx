@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Slider from "../../components/slider";
+import Slider from "../../components/slider.jsx";
 import Logo from "../../assets/images/logo-4.png";
 import { register } from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";

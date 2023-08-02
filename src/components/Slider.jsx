@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-// import Bg1 from "../assets/images/login-1.jpg";
-// import Bg2 from "../assets/images/login-2.jpg";
-// import Bg3 from "../assets/images/login-3.jpg";
-// import Bg4 from "../assets/images/login-4.jpg";
+import Bg1 from "../assets/images/login-1.jpg";
+import Bg2 from "../assets/images/login-2.jpg";
+import Bg3 from "../assets/images/login-3.jpg";
+import Bg4 from "../assets/images/login-4.jpg";
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   //MANEJO DEL SLIDE
-  const images = [
-    "https://www.clinicamenorca.com/wp-content/uploads/2017/12/dias-de-fiesta-y-tu-con-la-cara-cansada-e1573658537875.jpg",
-  ];
+  const images = [Bg1, Bg2, Bg3, Bg4];
   const handlePrevSlide = () => {
     setCurrentSlide((prevSlide) =>
       prevSlide === 0 ? images.length - 1 : prevSlide - 1

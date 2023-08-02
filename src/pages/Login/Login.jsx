@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Slider from "../../components/slider";
+import Slider from "../../components/slider.jsx";
 import Logo from "../../assets/images/logo-4.png";
 import { login } from "../../services/auth.service";
 import { login as loginStore } from "../../redux/slices/user.slice";
