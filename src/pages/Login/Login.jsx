@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Slider from "src/components/slider";
-import Logo from "src/assets/images/logo-4.png";
-import { login } from "src/services/auth.service";
-import { login as loginStore } from "src/redux/slices/user.slice";
+// import Slider from "../../components/slider";
+import Logo from "../../assets/images/logo-4.png";
+import { login } from "../../services/auth.service";
+import { login as loginStore } from "../../redux/slices/user.slice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -35,9 +35,9 @@ const Login = () => {
     login(user)
       .then((response) => {
         setToken(response.token);
-        console.log(setToken);
+        console.log(setToken)
         setUser(response.data);
-        console.log(setUser);
+        console.log(setUser)
       })
       .catch((error) => {
         setUserError({ credentials: "Error en el inicio de sesión" + error });
@@ -73,7 +73,7 @@ const Login = () => {
     <>
       <div className="h-screen flex flex-col lg:flex-row">
         {/* Left column container */}
-        <Slider></Slider>
+        {/* <Slider></Slider> */}
         {/* Right column container */}
         <div className="px-4 md:px-0 lg:w-6/12">
           <div className="md:mx-6 md:p-12">
