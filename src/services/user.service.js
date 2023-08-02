@@ -20,6 +20,6 @@ export const getUserProfile = async(token) => {
 
 //USER UPDATE
 export const updateProfile = async(token, credentials) => {
-    const {data} = await axios.put(`${url}/updateProfile`, credentials , config(token))
+    const {data} = await axios.put(`${url}/profile/updateProfile`, credentials , config(token))
     return data
 }
