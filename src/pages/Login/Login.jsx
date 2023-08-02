@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Slider from "../../components/slider.jsx";
+
 import Logo from "../../assets/images/logo-4.png";
 import { login } from "../../services/auth.service";
 import { login as loginStore } from "../../redux/slices/user.slice";
@@ -73,7 +73,7 @@ const Login = () => {
     <>
       <div className="h-screen flex flex-col lg:flex-row">
         {/* Left column container */}
-        <Slider></Slider>
+
         {/* Right column container */}
         <div className="px-4 md:px-0 lg:w-6/12">
           <div className="md:mx-6 md:p-12">
