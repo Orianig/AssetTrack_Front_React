@@ -29,15 +29,15 @@
     @apply mx-auto w-7/12 md:w-9/12 mb-10 md:mb-16 mt-8 md:mt-0 text-center;
   }
   .loginForm{
-    @apply text-secondary-100 text-sm md:text-lg self-start mb-4;
+    @apply text-secondary-100 text-sm md:text-lg self-start mb-4 font-semibold;
   }
 
 .AT-input{
-    @apply text-sm md:text-base text-start w-full h-12 font-normal text-white font-mulish border-t-transparent border-r-transparent border-l-transparent border-b-secondary-300 bg-transparent placeholder-secondary-300 focus:outline-none shadow-transparent focus:border-r-transparent focus:border-l-transparent focus:border-t-transparent focus:border-b-secondary-100 focus:ring-transparent;
+    @apply text-sm md:text-base text-start w-full h-12 font-normal text-white font-mulish border-t-transparent border-r-transparent border-l-transparent border-b-secondary-100 bg-transparent placeholder-secondary-100 focus:outline-none shadow-transparent focus:border-r-transparent focus:border-l-transparent focus:border-t-transparent focus:border-b-secondary-400 focus:ring-transparent;
   }
 
   .loginButton{
-    @apply bg-secondary-100 w-36 font-mulish hover:bg-secondary-300 text-white font-bold py-2 px-4 rounded-full mr-4;
+    @apply bg-secondary-400 w-36 font-mulish hover:bg-secondary-300 text-white font-bold py-2 px-4 rounded-full mr-4;
   }
 
 /* SIDEBAR COMPONENT */
@@ -61,7 +61,11 @@
 /* PROFILE */
 
 .AT-inputProfile{
-  @apply text-sm md:text-base text-start w-full h-12 font-normal text-white font-mulish border-t-transparent border-r-transparent border-l-transparent border-b-secondary-300 bg-transparent placeholder-secondary-300 focus:outline-none shadow-transparent focus:border-r-transparent focus:border-l-transparent focus:border-t-transparent focus:border-b-secondary-100 focus:ring-transparent;
+  @apply text-sm md:text-base text-start w-full h-12 font-normal text-secondary-600 font-mulish border-t-transparent border-r-transparent border-l-transparent border-b-secondary-600 bg-transparent placeholder-secondary-600 focus:outline-none shadow-transparent focus:border-r-transparent focus:border-l-transparent focus:border-t-transparent focus:border-b-secondary-100 focus:ring-transparent;
+}
+
+.inputProfile{
+@apply flex flex-col md:flex-row md:items-center gap-y-2 mb-8
 }
 
 }

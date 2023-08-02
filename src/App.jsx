@@ -7,7 +7,7 @@ function App() {
   
   return (
     <>
-       <div className="bg-secondary-200">
+       <div className="bg-secondary-600">
        <ToastContainer autoClose={3000} />
         <AppRouter/>
       </div>
