@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getUserProfile, updateProfile } from "../../services/user.service";
+import { toast } from "react-toastify";
 import CustomButton from "../../components/CustomButton";
 
 const Profile = () => {
@@ -43,6 +44,31 @@ const Profile = () => {
     fetchUserProfile(); //fetch ==> obtener datos
   }, []); //solo se ejecuta una vez
 
+  // maneja los cambios en los campos de entrada de un formulario
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUserProfile((prevProfile) => ({
+      ...prevProfile,
+      [name]: value,
+    }));
+  };
+  //maneja el evento del boton guardar
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Evita el comportamiento predeterminado del formulario
+
+    try {
+      if (authToken) {
+        // Realiza la actualización del perfil del usuario en la base de datos
+        await updateProfile(authToken, userProfile);
+        console.log("Perfil de usuario actualizado exitosamente.");
+        toast.success("Sus datos han sido actualizados correctamente");
+      }
+    } catch (error) {
+      console.error("Error al actualizar el perfil de usuario:", error);
+      toast.error("No ha sido posible modificar sus datos");
+    }
+  };
+
   return (
     <>
       <div className="bg-secondary-100 p-8 rounded-xl mb-8">
@@ -66,7 +92,7 @@ const Profile = () => {
                   placeholder="Nombre"
                   name="name"
                   value={userProfile.name}
-                  // onChange={handleChange}
+                  onChange={handleChange}
                 />
               </div>
               {/* LASTNAME */}
@@ -75,9 +101,9 @@ const Profile = () => {
                   type="text"
                   className="AT-inputProfile"
                   placeholder="Apellido(s)"
-                  name="lastName"
+                  name="surname"
                   value={userProfile.surname}
-                  // onChange={handleChange}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -89,12 +115,12 @@ const Profile = () => {
             </div>
             <div className="flex-1">
               <input
-                type="text"
+                type="number"
                 className="AT-inputProfile"
                 placeholder="Número de contacto"
-                name="phoneNumber"
+                name="phone_number"
                 value={userProfile.phone_number}
-                // onChange={handleChange}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -110,7 +136,7 @@ const Profile = () => {
                 placeholder="DNI/NIE"
                 name="dni"
                 value={userProfile.dni}
-                // onChange={handleChange}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -126,7 +152,7 @@ const Profile = () => {
                 placeholder="aaaa-mm-dd"
                 name="birthdate"
                 value={userProfile.birthdate}
-                // onChange={handleChange}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -140,11 +166,11 @@ const Profile = () => {
                 className="AT-inputProfile"
                 name="gender"
                 value={userProfile.gender}
-                // onChange={handleChange}
+                onChange={handleChange}
               >
                 <option value="Null">-.-</option>
-                <option value="Hombre">Hombre</option>
-                <option value="Mujer">Mujer</option>
+                <option value="male">Hombre</option>
+                <option value="female">Mujer</option>
               </select>
             </div>
           </div>
@@ -160,7 +186,7 @@ const Profile = () => {
                 placeholder="Número de colegiado"
                 name="collegiateNumber"
                 value={userProfile.employee_number}
-                // onChange={handleChange}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -177,14 +203,14 @@ const Profile = () => {
                   placeholder="Categoria"
                   name="Category"
                   value={userProfile.category}
-                  // onChange={handleChange}
+                  onChange={handleChange}
                 />
               </div>
             </div>
           </div>
         </form>
         <div className="flex justify-end">
-          {/* <CustomButton onClick={handleSubmit}>Guardar</CustomButton> */}
+          <CustomButton onClick={handleSubmit}>Guardar</CustomButton>
         </div>
       </div>
       <div className="bg-secondary-100 p-8 rounded-xl mb-8">
