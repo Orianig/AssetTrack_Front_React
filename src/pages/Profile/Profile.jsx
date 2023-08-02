@@ -19,9 +19,7 @@ const Profile = () => {
   });
 
   const authToken = useSelector((state) => state.user.credentials.token);
-  console.log(authToken);
   const userRoleId = useSelector((state) => state.user.data.role_id);
-  console.log(userRoleId);
 
   useEffect(() => {
     //obtiene el perfil de usuario
@@ -31,10 +29,8 @@ const Profile = () => {
           //paso el token como argumento y recibo los datos desde mi bbdd
           const userProfile = await getUserProfile(authToken);
           //obtengo los datos
-          console.log(userProfile);
           //actualiza el estado local
           setUserProfile(userProfile.data);
-          console.log(userProfile.data);
         }
       } catch (error) {
         console.error("Error retrieving user profile:", error);

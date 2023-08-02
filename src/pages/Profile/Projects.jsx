@@ -7,12 +7,11 @@ import Loading from "../../components/Loading";
 
 const Projects = () => {
   const authToken = useSelector((state) => state.user.credentials.token);
-  console.log(authToken);
   const [projectList, setProjectList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchMeProjects();
+    fetchAllProjects();
   }, [authToken]);
 
   const fetchAllProjects = async () => {
