@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo-4.png";
+import { logout } from "../redux/slices/user.slice";
 
 //ICONS
-import { FaUser, FaPuzzlePiece, FaBoxes, FaTruckMoving} from "react-icons/fa";
-import { BsCalendarCheckFill, BsFillPeopleFill } from "react-icons/bs"; 
+import { FaUser, FaPuzzlePiece, FaBoxes, FaTruckMoving } from "react-icons/fa";
+import { BsCalendarCheckFill, BsFillPeopleFill } from "react-icons/bs";
 import {
   RiArrowRightSLine,
   RiCloseLine,
@@ -14,15 +16,20 @@ import {
 
 import { MdProductionQuantityLimits } from "react-icons/md";
 
-
 const Sidebar = () => {
-
-    //controladores para los menus
+  //controladores para los menus
   const [showMenu, setShowMenu] = useState(false);
   const [showProfileSubmenu, setShowProfileSubmenu] = useState(false);
   const [showAssetsSubmenu, setShowAssetsSubmenu] = useState(false);
   const [showInventorySubmenu, setShowInventorySubmenu] = useState(false);
 
+  const userRoleId = useSelector((state) => state.user.data.role_id);
+  console.log(userRoleId);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <>
@@ -45,7 +52,7 @@ const Sidebar = () => {
               <BsCalendarCheckFill className="iconsText" />
               Calendario
             </Link>
-            
+
             {/* PROFILE*/}
             <button
               onClick={() => setShowProfileSubmenu(!showProfileSubmenu)}
@@ -67,10 +74,7 @@ const Sidebar = () => {
             >
               <li>
                 {/* USER PROFILE*/}
-                <Link
-                  to="/personalArea/profile"
-                  className="sidebarComponent"
-                >
+                <Link to="/personalArea/profile" className="sidebarComponent">
                   Perfil
                 </Link>
                 {/* PROJECTS*/}
@@ -81,23 +85,22 @@ const Sidebar = () => {
                   Proyectos
                 </Link>
                 {/* ASSETS RESERVATIONS*/}
-                <Link
-                  to="/personalArea/userAsset"
-                  className="sidebarComponent"
-                >
+                <Link to="/personalArea/userAsset" className="sidebarComponent">
                   Reservas
                 </Link>
               </li>
             </ul>
-             {/* EMPLEADO */}
-             <Link
-              to="/personalArea/providers"
-              className="flex items-center gap-4 py-2 px-4 rounded-lg font-work-sans hover:bg-secondary-200 transition-colors"
-              onClick={() => setShowMenu(false)}
-            >
-              <BsFillPeopleFill className="iconsText" />
-              Empleados
-            </Link>
+            {/* EMPLEADO */}
+            {userRoleId !== 3 && (
+              <Link
+                to="/personalArea/providers"
+                className="flex items-center gap-4 py-2 px-4 rounded-lg font-work-sans hover:bg-secondary-200 transition-colors"
+                onClick={() => setShowMenu(false)}
+              >
+                <BsFillPeopleFill className="iconsText" />
+                Empleados
+              </Link>
+            )}
             {/* ASSETS*/}
             <button
               onClick={() => setShowAssetsSubmenu(!showAssetsSubmenu)}
@@ -119,10 +122,7 @@ const Sidebar = () => {
             >
               <li>
                 {/* RESERVATIONS*/}
-                <Link
-                  to="/personalArea/assets"
-                  className="sidebarComponent"
-                >
+                <Link to="/personalArea/assets" className="sidebarComponent">
                   Reservas
                 </Link>
                 {/* ANALYTICS*/}
@@ -133,12 +133,14 @@ const Sidebar = () => {
                   Analisis
                 </Link>
                 {/* ASSETS MANAGEMENT*/}
+                {userRoleId !== 3 && (
                 <Link
                   to="/personalArea/assetsManagement"
                   className="sidebarComponent"
                 >
                   Gestión
                 </Link>
+                )}
               </li>
             </ul>
             {/* INVENTORY*/}
@@ -151,7 +153,7 @@ const Sidebar = () => {
               </span>
               <RiArrowRightSLine
                 className={`mt-1 ${
-                    showInventorySubmenu && "rotate-90"
+                  showInventorySubmenu && "rotate-90"
                 } transition-all`}
               />
             </button>
@@ -162,10 +164,7 @@ const Sidebar = () => {
             >
               <li>
                 {/* RESERVATIONS*/}
-                <Link
-                  to="/personalArea/inventory"
-                  className="sidebarComponent"
-                >
+                <Link to="/personalArea/inventory" className="sidebarComponent">
                   Reservas
                 </Link>
                 {/* ANALYTICS*/}
@@ -176,12 +175,14 @@ const Sidebar = () => {
                   Analisis
                 </Link>
                 {/* INVENTORY MANAGEMENT*/}
+                {userRoleId !== 3 && (
                 <Link
                   to="/personalArea/inventoryManagement"
                   className="sidebarComponent"
                 >
                   Gestión
                 </Link>
+                )}
               </li>
             </ul>
             {/* PRODUCTS*/}
@@ -194,6 +195,7 @@ const Sidebar = () => {
               Productos
             </Link>
             {/* PROVIDERS*/}
+            {userRoleId !== 3 && (
             <Link
               to="/personalArea/providers"
               className="flex items-center gap-4 py-2 px-4 rounded-lg font-work-sans hover:bg-secondary-200 transition-colors"
@@ -202,14 +204,15 @@ const Sidebar = () => {
               <FaTruckMoving className="iconsText" />
               Proveedores
             </Link>
+            )}
           </nav>
         </div>
         <div>
           <nav>
             <Link
-            //   to="/login"
+              to="/"
               className="flex items-center gap-4 font-work-sans py-2 px-4 rounded-lg hover:bg-secondary-200 transition-colors"
-            //   onClick={handleLogout}
+              onClick={handleLogout}
             >
               <RiLogoutCircleRLine className="iconsText" />
               Cerrar sesión

@@ -12,7 +12,6 @@ export const userSlice = createSlice({
         role_id: "",
         name: "",
         surname: "",
-        employee_number:""
       },
     },
     reducers: {
